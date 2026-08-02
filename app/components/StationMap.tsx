@@ -33,11 +33,12 @@ export default function StationMap() {
     fetch('/api/stations')
       .then((res) => res.json())
       .then((data) => {
-        setStations(data);
+        setStations(Array.isArray(data) ? data : []);
         setLoading(false);
       })
       .catch((err) => {
         console.error(err);
+        setStations([]);
         setLoading(false);
       });
   }, []);
